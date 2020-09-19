@@ -1,0 +1,55 @@
+//编写一个函数来查找字符串数组中的最长公共前缀。 
+//
+// 如果不存在公共前缀，返回空字符串 ""。 
+//
+// 示例 1: 
+//
+// 输入: ["flower","flow","flight"]
+//输出: "fl"
+// 
+//
+// 示例 2: 
+//
+// 输入: ["dog","racecar","car"]
+//输出: ""
+//解释: 输入不存在公共前缀。
+// 
+//
+// 说明: 
+//
+// 所有输入只包含小写字母 a-z 。 
+// Related Topics 字符串 
+// 👍 1270 👎 0
+
+/*
+解题思路：
+1、如果字符串数组为空，返回""
+2、字符串数组不为空，初始化最终结果ans为数组中第一个字符串strs[0],依次遍历数组中之后的字符串，
+依次将其与 ans 进行比较，两两找出公共前缀，最终结果即为最长公共前缀
+3、如果查找过程中出现了 ans 为空的情况，则公共前缀不存在直接返回
+ */
+
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0){
+            return "";
+        }
+        String ans = strs[0]; // 初始化最终结果为数组中第一个字符串
+        for(int i = 1;i< strs.length;i++){  //依次遍历字符串数组
+            int j = 0;
+            for (;j<ans.length() && j<strs[i].length();j++){   //将ans与其他字符串进行比较
+                if(ans.charAt(j) != strs[i].charAt(j)){  //直到进行比较的两个字符串中出现不同字符，break
+                    break;
+                }
+            }
+            ans = ans.substring(0,j); //ans = 两个字符串的公共部分
+            if(ans == ""){
+                return ans;
+            }
+        }
+        return ans;
+
+    }
+}
+//leetcode submit region end(Prohibit modification and deletion)
